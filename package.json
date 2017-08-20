@@ -1,0 +1,17 @@
+{
+  "name": "node-scaling",
+  "version": "0.0.1",
+  "description": "A test project for node scaling",
+  "main": "server.js",
+  "scripts": {
+    "serve:single": "node server",
+    "serve:multiple": "node cluster",
+    "test:load": "node scripts/load-test",
+    "test": "echo \"No tests\" & exit 0"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Cristian Mardare",
+  "license": "ISC"
+}
