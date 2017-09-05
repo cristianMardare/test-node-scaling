@@ -7,8 +7,8 @@ if (cluster.isMaster) {
   console.log(`Forking for ${cpus} CPUs`);
   for (let i = 0; i<cpus; i++) {
     cluster.fork();
-    cluster.on('exit', handleWorkerExit);
   }
+  cluster.on('exit', handleWorkerExit);
 } else {
   require('./server');
 }
