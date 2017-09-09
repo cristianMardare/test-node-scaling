@@ -20,8 +20,6 @@ const argv = require('yargs')
   .demandOption(['url'], 'Please provide a url before running the script')
   .argv;
 
-console.log(argv);
-
 let args = [];
 //Docs: https://httpd.apache.org/docs/2.4/programs/ab.html
 args.push('-r');  // Don't exit on socket receive errors.

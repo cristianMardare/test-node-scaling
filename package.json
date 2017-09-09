@@ -6,6 +6,7 @@
   "scripts": {
     "serve:single": "node server",
     "serve:multiple": "node cluster",
+    "serve:mutiple-instable": "node cluster --crash",
     "test:load": "node scripts/load-test --url 'http://localhost:8080/'",
     "test": "echo \"No tests\" & exit 0"
   },

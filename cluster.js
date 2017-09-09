@@ -1,5 +1,15 @@
+#!/usr/bin/env node
 const cluster = require('cluster');
 const os = require('os');
+const crash = require('./modules/crash-process');
+
+const argv = require('yargs')
+.options('crash', {
+  alias: 'x',
+  boolean: true,
+  describe: 'should the process(es) randomly crash at intervals'
+})
+.argv;
 
 if (cluster.isMaster) {
   const cpus = os.cpus().length;
@@ -11,6 +21,7 @@ if (cluster.isMaster) {
   cluster.on('exit', handleWorkerExit);
 } else {
   require('./server');
+  argv.crash && crash({ interval: 10000, random: true });
 }
 
 function handleWorkerExit(worker, code, signal){

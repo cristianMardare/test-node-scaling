@@ -8,7 +8,3 @@ http.createServer((req, res) => {
   console.log(`Started process ${pid}`);
 });
 
-// simulate process crash
-setTimeout(() => {
-  process.exit(1) // death by random timeout
-}, Math.random() * 10000);
