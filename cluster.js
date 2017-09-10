@@ -2,6 +2,7 @@
 const cluster = require('cluster');
 const os = require('os');
 const crash = require('./modules/crash-process');
+const zeroDowntime = require('./modules/zero-downtime');
 
 const argv = require('yargs')
 .options('crash', {
@@ -18,7 +19,12 @@ if (cluster.isMaster) {
   for (let i = 0; i<cpus; i++) {
     cluster.fork();
   }
+
   cluster.on('exit', handleWorkerExit);
+  // trigger restart with: kill -SIGUSR2 pid
+  process.on('SIGUSR2', () => { zeroDowntime.restart(cluster); });
+
+  console.log(`Master is running as PID: ${process.pid}`);
 } else {
   require('./server');
   argv.crash && crash({ interval: 10000, random: true });
@@ -31,3 +37,5 @@ function handleWorkerExit(worker, code, signal){
       cluster.fork();
     }
   }
+
+  
