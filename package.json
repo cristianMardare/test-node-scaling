@@ -1,6 +1,6 @@
 {
   "name": "node-scaling",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A test project for node scaling",
   "main": "server.js",
   "scripts": {
